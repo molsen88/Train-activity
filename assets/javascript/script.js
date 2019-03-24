@@ -14,7 +14,7 @@ var database = firebase.database();
 
 
 
-// 2. Button for adding Employees
+// 2. Button for adding Trains
 $( "#add-train" ).on( "click", function ( event ) {
     event.preventDefault();
 
@@ -29,7 +29,7 @@ $( "#add-train" ).on( "click", function ( event ) {
 
 
 
-    // Creates local "temporary" object for holding employee data
+    // Creates local "temporary" object for holding train data
     var newTrain = {
         name: trainName,
         location: destination,
@@ -39,7 +39,7 @@ $( "#add-train" ).on( "click", function ( event ) {
 
 
 
-    // Uploads employee data to the database
+    // Uploads train data to the database
     database.ref().push( newTrain );
 
     // Logs everything to console
@@ -59,7 +59,7 @@ $( "#add-train" ).on( "click", function ( event ) {
 
 
 
-// 3. Create Firebase event for adding employee to the database and a row in the html when a user adds an entry
+// 3. Create Firebase event for adding trian to the database and a row in the html when a user adds an entry
 database.ref().on( "child_added", function ( childSnapshot ) {
     console.log( childSnapshot.val() );
 
@@ -92,7 +92,7 @@ database.ref().on( "child_added", function ( childSnapshot ) {
 // Assumptions
 var tFrequency = 8;
 
-// Time is 3:30 AM
+// Time is 8:45 AM
 var firstTime = "08:45";
 
 // First Time (pushed back 1 year to make sure it comes before current time)
@@ -120,17 +120,3 @@ var nextTrain = moment().add( arrival, "minutes" );
 console.log( "ARRIVAL TIME: " + moment( nextTrain ).format( "hh:mm" ) )
 
 
-//     var newRow = $( "<tr>" ).append(
-//         $( "<td>" ).text( trainName ),
-//         $( "<td>" ).text( destination ),
-//         $( "<td>" ).text( frequency ),
-//         $( "<td>" ).text( arrival ),
-//         $( "<td>" ).text( nextTrain ),
-
-
-
-
-//     );
-
-//     $( "train-table > tbody" ).append( newRow );
-// } );
